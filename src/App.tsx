@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import QRCode from 'qrcode'
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
   const [amount, setAmount] = useState('')
   const [message, setMessage] = useState('')
   const [vs, setVs] = useState('')
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [qrUrl, setQrUrl] = useState('')
 
   const buildSpdString = (): string => {
     let spd = `SPD*1.0*ACC:${iban}*AM:${amount}*CC:CZK`
@@ -16,23 +16,22 @@ function App() {
   }
 
   useEffect(() => {
-    if (canvasRef.current) {
-      QRCode.toCanvas(canvasRef.current, buildSpdString())
-    }
+    QRCode.toDataURL(buildSpdString(), { width: 256 })
+      .then((url) => setQrUrl(url))
   }, [iban, amount, message, vs])
 
   return (
     <div className="container">
       <h1>QR code generator</h1>
-      <div className="field field-iban">
-  <label>IBAN</label>
-  <input type="text" value={iban} onChange={(e) => setIban(e.target.value)} />
-  </div>
-      <div className="field field-amount">
+      <div className="field">
+        <label>IBAN</label>
+        <input type="text" value={iban} onChange={(e) => setIban(e.target.value)} />
+      </div>
+      <div className="field">
         <label>Částka</label>
         <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="povinná" />
       </div>
-    <div className="field">
+      <div className="field">
         <label>Zpráva</label>
         <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="volitelná" />
       </div>
@@ -41,7 +40,7 @@ function App() {
         <input type="text" value={vs} onChange={(e) => setVs(e.target.value)} placeholder="volitelný" />
       </div>
       <div className="qr">
-        <canvas ref={canvasRef} />
+        {qrUrl && <img src={qrUrl} alt="QR platba" />}
       </div>
     </div>
   )
