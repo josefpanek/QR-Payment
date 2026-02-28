@@ -16,6 +16,10 @@ function App() {
   }
 
   useEffect(() => {
+    if (!amount) {
+      setQrUrl('')
+      return
+    }
     QRCode.toDataURL(buildSpdString(), { width: 256 })
       .then((url) => setQrUrl(url))
   }, [iban, amount, message, vs])
