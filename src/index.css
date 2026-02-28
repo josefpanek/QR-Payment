@@ -39,8 +39,9 @@ body {
   background: var(--surface);
   padding: 2rem;
   border-radius: 8px;
-  width: 100%;
-  max-width: 1000px;
+  width: 480px;
+  max-width: 90vw;
+  min-width: 450px;
 }
 
 h1 {
@@ -51,7 +52,7 @@ h1 {
 
 .field {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 140px 1fr;
   align-items: center;
   margin-bottom: 1rem;
   gap: 0.5rem;
@@ -78,7 +79,6 @@ input:focus {
 }
 
 button {
-  margin-top: 1rem;
   padding: 0.5rem 1.5rem;
   background: var(--accent);
   color: white;
@@ -88,8 +88,10 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  opacity: 0.85;
+.share-qr {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .qr {

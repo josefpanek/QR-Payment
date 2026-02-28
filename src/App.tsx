@@ -20,6 +20,20 @@ function App() {
       .then((url) => setQrUrl(url))
   }, [iban, amount, message, vs])
 
+  const shareQR = async () => {
+    if (!qrUrl) return
+    
+    const blob = await (await fetch(qrUrl)).blob()
+    const file = new File([blob], 'qr-platba.png', { type: 'image/png' })
+    
+    if (navigator.share) {
+      await navigator.share({
+        files: [file],
+        title: 'QR Platba'
+      })
+    }
+  }
+
   return (
     <div className="container">
       <h1>QR code generator</h1>
@@ -41,6 +55,9 @@ function App() {
       </div>
       <div className="qr">
         {qrUrl && <img src={qrUrl} alt="QR platba" />}
+      </div>
+      <div className="share-qr">
+        {qrUrl && <button onClick={shareQR}>Sdílet QR kód</button>}
       </div>
     </div>
   )
