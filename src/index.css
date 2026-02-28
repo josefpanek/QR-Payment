@@ -71,6 +71,8 @@ input {
   font-size: 1rem;
   background: var(--bg);
   color: var(--text);
+  min-width: 0;
+  width: 100%;
 }
 
 input:focus {
