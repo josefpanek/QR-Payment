@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>QR code generator</h1>
+      <h1>QR kód generátor</h1>
       <div className="field">
         <label>IBAN</label>
         <input type="text" value={iban} onChange={(e) => setIban(e.target.value)} />
