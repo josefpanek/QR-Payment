@@ -29,9 +29,6 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   padding: 2rem 1rem;
 }
 
@@ -39,9 +36,9 @@ body {
   background: var(--surface);
   padding: 1.5rem;
   border-radius: 8px;
-  width: 90vw;
-  max-width: 90vw;
-  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -52,7 +49,7 @@ h1 {
 
 .field {
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: 130px 1fr;
   align-items: center;
   margin-bottom: 1rem;
   gap: 0.5rem;
@@ -90,6 +87,10 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  opacity: 0.85;
+}
+
 .share-qr {
   margin-top: 1rem;
   display: flex;
@@ -100,13 +101,4 @@ button {
   margin-top: 1.5rem;
   display: flex;
   justify-content: center;
-}
-
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-html {
-  overflow-x: hidden;
 }
