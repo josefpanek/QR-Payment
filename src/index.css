@@ -102,3 +102,11 @@ button:hover {
   display: flex;
   justify-content: center;
 }
+
+.iban-warning {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0.25rem;
+  grid-column: 1 / -1;
+}

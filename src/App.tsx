@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import QRCode from 'qrcode'
 
 function App() {
+  const DEFAULT_IBAN = 'CZ7862106701002229830159'
   const [iban, setIban] = useState('CZ7862106701002229830159')
   const [amount, setAmount] = useState('')
   const [message, setMessage] = useState('')
@@ -51,13 +52,14 @@ function App() {
       <h1>QR kód generátor</h1>
       <div className="field">
         <label>IBAN</label>
-        <input type="text" value={iban} onChange={(e) =>
-         {
+        <input type="text" value={iban} onChange={(e) => 
+        {
           const val = e.target.value.toUpperCase().slice(0, 34)
           const prefix = val.slice(0, 2).replace(/[^A-Z]/g, '')
           const rest = val.slice(2).replace(/[^A-Z0-9]/g, '')
           setIban(prefix + rest)
         }}/>
+        {iban !== DEFAULT_IBAN && iban.length > 0 && (<p className="iban-warning">⚠️ POZOR, TOHLE NENÍ ÚČET JP ⚠️</p>)}
       </div>
       <div className="field">
         <label>Částka</label>
